@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Movies from './components/ListMovies';
+import Register from './components/Register';
 
 function App() {
   return (
@@ -9,7 +10,8 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <div>
-        <Movies></Movies>
+        <Movies/>
+        <Register/>
       </div>
     </div>
   );
