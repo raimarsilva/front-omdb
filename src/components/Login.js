@@ -1,44 +1,35 @@
 import { useState } from "react";
 import api from '../services/api'
 
-export default function Register(){
+export default function Login(){
     const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
     const [password, setPassword] = useState('');
+    const [token, setToken] = useState('')
 
-    const endPoint = 'auth/signup';
+    const endPoint = 'auth/signin';
 
     function handleEmailChange(event){
         setEmail(event.target.value)
-    }
-
-    function handleNameChange(event){
-        setName(event.target.value)
     }
 
     function handlePasswordChange(event){
         setPassword(event.target.value)
     }
 
-    function cleanForm(){
-        setEmail('')
-        setName('')
-        setPassword('')
-    }
-
-    async function createUser(e){
+    async function doLogin(e){
         e.preventDefault()
-        await api.post(endPoint,{email:email,name:name,password:password})
+        await api.post(endPoint,{email:email,password:password})
         .then((response) => {
-            console.log(response.status)
+            setToken(response.data.user.token)
         })
-        cleanForm()
+        setEmail('')
+        setPassword('')
     }
 
     return(
         <div>
             <div>
-                <h1>Cadastre-se</h1>
+                <h1>Login</h1>
             </div>
             <form>
                 <label>E-mail:
@@ -46,17 +37,12 @@ export default function Register(){
                     placeholder="e-mail"
                     value={email}
                     onChange={handleEmailChange}/></label><br/>
-                <label>Nome:
-                <input
-                    placeholder="nome"
-                    value={name}
-                    onChange={handleNameChange}/></label><br/>
                 <label>Senha:
                 <input
                     placeholder="senha"
                     value={password}
                     onChange={handlePasswordChange}/></label><br/>
-                <button onClick={createUser}>Salvar</button>
+                <button onClick={doLogin}>Acessar</button>
             </form>
         </div>
     )
