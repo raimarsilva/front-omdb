@@ -1,22 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
-import Movies from './components/ListMovies';
-import Register from './components/Register';
 import Login from './components/Login';
+import Home from './components/Home';
+import AuthContext from './contexts/AuthContext';
+import { useContext, useEffect } from 'react';
+import Router from './router/Router';
 
-function App() {
+function App({ children }) {
+  let token = useContext(AuthContext);
+
+
+  useEffect(() => {
+    token = localStorage.getItem('token');
+    console.log('<App> token do contexto: ', token);
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo"/>
-      </header>
-      <div>
-        <Movies/>
-        <Register/>
-        <Login/>
-      </div>
+    <div className='App'>
+      <AuthContext.Provider value={token}>
+        <Router>
+          {children}
+          {(token === '' ? <Login /> : <Home />)}
+        </Router>
+      </AuthContext.Provider>
     </div>
-  );
+  )
 }
 
 export default App;
