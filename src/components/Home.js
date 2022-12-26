@@ -5,7 +5,7 @@ import ListMovies from "./ListMovies";
 
 
 export default function Home() {
-    let token = useContext(AuthContext);
+    const token = useContext(AuthContext);
 
     return (
         <div className="App">

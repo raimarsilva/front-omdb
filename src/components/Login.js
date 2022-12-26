@@ -2,12 +2,13 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from '../services/api';
 import AuthContext from "../contexts/AuthContext";
+import Values from "../strings/values";
 
 export default function Login(props) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    let token = useContext(AuthContext);
+    const [token, setToken] = useContext(AuthContext);
     const navigate = useNavigate();
 
     const endPoint = 'auth/signin';
@@ -25,8 +26,8 @@ export default function Login(props) {
         await api.post(endPoint, { email: email, password: password })
             .then((response) => {
                 console.log('<Login> token a definir: ', response.data.user.token);
-                token = response.data.user.token;
-                localStorage.setItem('token', token);
+                localStorage.setItem('token', response.data.user.token);
+                setToken(localStorage.getItem('token'));
                 console.log('<Login> token definido: ', token);
                 navigate('/home');
             }, (error) => {
@@ -42,12 +43,12 @@ export default function Login(props) {
             <form>
                 <label>E-mail:
                     <input
-                        placeholder="e-mail"
+                        placeholder={Values.EMAIL_PLACEHOLDER}
                         value={email}
                         onChange={handleEmailChange} /></label><br />
                 <label>Senha:
                     <input
-                        placeholder="senha"
+                        placeholder={Values.PASSWORD_PLACEHOLDER}
                         value={password}
                         onChange={handlePasswordChange} /></label><br />
                 <button onClick={doLogin}>Acessar</button>

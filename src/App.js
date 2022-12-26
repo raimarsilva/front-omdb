@@ -2,24 +2,28 @@ import './App.css';
 import Login from './components/Login';
 import Home from './components/Home';
 import AuthContext from './contexts/AuthContext';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Router from './router/Router';
+import { useNavigate } from 'react-router-dom';
 
-function App({ children }) {
-  let token = useContext(AuthContext);
-
+function App() {
+  let [token, setToken] = useState('');
 
   useEffect(() => {
-    token = localStorage.getItem('token');
-    console.log('<App> token do contexto: ', token);
-  });
+    if (localStorage.getItem('token')) {
+      setToken(localStorage.getItem('token'))
+      console.log('<App> token do storage: ', token);
+    } else {
+      console.log('<App> sem token no storage.', token)
+    }
+
+  }, [token]);
 
   return (
     <div className='App'>
-      <AuthContext.Provider value={token}>
+      <AuthContext.Provider value={[token, setToken]}>
         <Router>
-          {children}
-          {(token === '' ? <Login /> : <Home />)}
+          {token ? <Home /> : <Login />}
         </Router>
       </AuthContext.Provider>
     </div>
