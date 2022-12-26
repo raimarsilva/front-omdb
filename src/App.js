@@ -7,7 +7,8 @@ import Router from './router/Router';
 import { useNavigate } from 'react-router-dom';
 
 function App() {
-  let [token, setToken] = useState('');
+  const { token, setToken } = useContext(AuthContext);
+
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -21,11 +22,9 @@ function App() {
 
   return (
     <div className='App'>
-      <AuthContext.Provider value={[token, setToken]}>
-        <Router>
-          {token ? <Home /> : <Login />}
-        </Router>
-      </AuthContext.Provider>
+      <Router>
+        {token ? <Home /> : <Login />}
+      </Router>
     </div>
   )
 }
