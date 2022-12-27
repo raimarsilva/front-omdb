@@ -1,14 +1,16 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from '../services/api';
-import AuthContext from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext";
 import Values from "../strings/values";
 
-export default function Login(props) {
+export default function Login() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [token, setToken] = useContext(AuthContext);
+
+    const { token, setToken } = useContext(AuthContext);
+
     const navigate = useNavigate();
 
     const endPoint = 'auth/signin';

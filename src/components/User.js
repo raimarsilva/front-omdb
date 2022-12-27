@@ -1,13 +1,13 @@
-import { useState } from "react";
-import api from '../services/api'
+import { useContext, useState } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
-export default function User(){
+export default function User() {
 
-    const endPoint = 'auth/me';
+    const { user, setUser } = useContext(AuthContext)
 
-    return(
+    return (
         <div>
-            <text>Bem-vindo</text>
+            <h2>Bem-vindo, {user}!</h2>
         </div>
     )
 }
