@@ -9,7 +9,7 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const { token, setToken } = useContext(AuthContext);
+    const { setToken } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -27,10 +27,8 @@ export default function Login() {
         e.preventDefault();
         await api.post(endPoint, { email: email, password: password })
             .then((response) => {
-                console.log('<Login> token a definir: ', response.data.user.token);
                 localStorage.setItem('token', response.data.user.token);
                 setToken(localStorage.getItem('token'));
-                console.log('<Login> token definido: ', token);
                 navigate('/home');
             }, (error) => {
                 console.log(error)
@@ -38,24 +36,30 @@ export default function Login() {
     }
 
     return (
-        <>
-            <div>
+        <div class='col'>
+            <div className="App-header">
                 <h1>Login</h1>
             </div>
-            <form>
-                <label>E-mail:
+            <div class='needs-validation'>
+                <span class='input-group-text' >E-mail:
                     <input
+                        required
+                        type='text'
+                        class='form-control'
                         placeholder={Values.EMAIL_PLACEHOLDER}
                         value={email}
-                        onChange={handleEmailChange} /></label><br />
-                <label>Senha:
+                        onChange={handleEmailChange} /></span><br />
+                <span class='input-group-text'>Senha:
                     <input
+                        required
+                        type='password'
+                        class='form-control'
                         placeholder={Values.PASSWORD_PLACEHOLDER}
                         value={password}
-                        onChange={handlePasswordChange} /></label><br />
-                <button onClick={doLogin}>Acessar</button>
-            </form>
+                        onChange={handlePasswordChange} /></span><br />
+                <button class='btn btn-outline-primary' type='submit' onClick={doLogin}>Acessar</button>
+            </div>
             <Link to='/register'>Cadastre-se</Link>
-        </>
+        </div >
     )
 }

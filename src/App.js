@@ -6,7 +6,6 @@ import PublicRouter from './router/PublicRouter';
 
 function App() {
   const { token, setToken } = useContext(AuthContext);
-  console.log(token);
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -21,7 +20,15 @@ function App() {
   return (
     <div className='App'>
       {token ? <PrivateRouter /> : <PublicRouter />}
-    </div>
+      <footer
+        style={{
+          height: 50,
+          padding: '10px'
+        }}
+        class='footer fixed-bottom'>
+        <span>&copy; Raimar Silva</span>
+      </footer>
+    </div >
   )
 }
 

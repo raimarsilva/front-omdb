@@ -3,11 +3,12 @@ import { AuthContext } from "../contexts/AuthContext";
 
 export default function User() {
 
-    const { user, setUser } = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     return (
         <div>
-            <h2>Bem-vindo, {user}!</h2>
+            <h3>Olá, {user.name}!</h3>
+            <h4>{user.email}</h4>
         </div>
     )
 }
