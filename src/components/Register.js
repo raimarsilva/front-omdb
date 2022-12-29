@@ -44,6 +44,7 @@ export default function Register() {
             <div className="App-header">
                 <h1>Cadastre-se</h1>
             </div>
+            <br />
             <form>
                 <label>E-mail:
                     <input
@@ -64,7 +65,7 @@ export default function Register() {
                         type='password'
                         placeholder="senha"
                         value={password}
-                        onChange={handlePasswordChange} /></label><br />
+                        onChange={handlePasswordChange} /><br /></label><br />
                 <button class='btn btn-outline-primary' onClick={() => navigate('/')}>Cancelar</button>
                 <button class='btn btn-primary' onClick={createUser}>Salvar</button>
             </form>

@@ -36,30 +36,44 @@ export default function Login() {
     }
 
     return (
-        <div class='col'>
+        <div>
             <div className="App-header">
                 <h1>Login</h1>
             </div>
-            <div class='needs-validation'>
-                <span class='input-group-text' >E-mail:
-                    <input
-                        required
-                        type='text'
-                        class='form-control'
-                        placeholder={Values.EMAIL_PLACEHOLDER}
-                        value={email}
-                        onChange={handleEmailChange} /></span><br />
-                <span class='input-group-text'>Senha:
-                    <input
-                        required
-                        type='password'
-                        class='form-control'
-                        placeholder={Values.PASSWORD_PLACEHOLDER}
-                        value={password}
-                        onChange={handlePasswordChange} /></span><br />
-                <button class='btn btn-outline-primary' type='submit' onClick={doLogin}>Acessar</button>
+            <br />
+            <div class='container align-items-center' style={{ width: '30%', minWidth: '300px' }}>
+                <br />
+                <form class='needs-validation' novalidate>
+                    <label class='input-group-text' >E-mail:
+                        <input
+                            required
+                            type='text'
+                            class='form-control'
+                            placeholder={Values.EMAIL_PLACEHOLDER}
+                            value={email}
+                            onChange={handleEmailChange} />
+                    </label>
+                    <br />
+                    <label class='input-group-text'>Senha:
+                        <input
+                            required
+                            type='password'
+                            class='form-control'
+                            placeholder={Values.PASSWORD_PLACEHOLDER}
+                            value={password}
+                            onChange={handlePasswordChange} />
+                        <div class="invalid-feedback">Forneça uma senha aqui.</div>
+                    </label>
+                    <br />
+                    <button
+                        class='btn btn-primary'
+                        type='submit'
+                        onClick={doLogin}>Acessar</button>
+                    <br />
+                </form>
+                <br />
+                Primeiro acesso? <Link to='/register'>Cadastre-se!</Link>
             </div>
-            <Link to='/register'>Cadastre-se</Link>
         </div >
     )
 }

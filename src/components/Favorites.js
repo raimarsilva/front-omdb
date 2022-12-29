@@ -40,7 +40,9 @@ export default function Favorites(props) {
                                 margin: '5px',
                                 padding: '5px'
                             }}>{item.imdbID}
-                                <Link onClick={() => unfavorite(item.imdbID)}>Remover</Link>
+                                <button
+                                    class='btn btn-danger btn-sm'
+                                    onClick={() => unfavorite(item.imdbID)}>Remover</button>
                             </div>
                         </div>
                     )

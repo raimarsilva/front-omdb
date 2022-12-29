@@ -24,17 +24,12 @@ export default function Home() {
         <>
             <div className="App-header">
                 <h1>Home</h1>
-                <nav style={{
-                    backgroundColor: '#eee',
-                    borderRadius: 10,
-                }}>
-                    <Link
-                        type='button'
-                        class='btn btn-link'
-                        to="/reviews"
-                        title="ver suas revisões de filmes."
-                    >Reviews</Link>
-                </nav>
+                <Link
+                    type='button'
+                    class='btn btn-light'
+                    to="/reviews"
+                    title="ver suas revisões de filmes."
+                >Reviews</Link>
                 <User />
             </div>
             <div className="App">

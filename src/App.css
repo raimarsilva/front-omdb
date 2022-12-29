@@ -30,6 +30,11 @@
   color: #61dafb;
 }
 
+.btn {
+  margin: 3px;
+  border-radius: 25em;
+}
+
 .footer {
   background-color: #193772;
   color: aliceblue;

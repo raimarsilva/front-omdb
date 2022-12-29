@@ -8,7 +8,7 @@ export default function User() {
     return (
         <div>
             <h3>Olá, {user.name}!</h3>
-            <h4>{user.email}</h4>
+            <h6>{user.email}</h6>
         </div>
     )
 }

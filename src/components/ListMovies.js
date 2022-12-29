@@ -57,7 +57,7 @@ export default function ListMovies() {
                                     marginRight: '5px'
                                 }}>{movie.Title}
                                     <button
-                                        tyoe='button'
+                                        type='button'
                                         class='btn btn-warning active btn-sm'
                                         onClick={() => favorite(movie.imdbID)}>Favoritar</button>
                                     <button

@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import api from "../services/api";
+import User from "./User";
 
 export default function Reviews() {
     const navigate = useNavigate();
@@ -31,6 +32,7 @@ export default function Reviews() {
         <>
             <div className="App-header">
                 <h1>Reviews</h1>
+                <User />
             </div>
             <div>
                 <ul>
@@ -50,6 +52,9 @@ export default function Reviews() {
                         )
                     })}
                 </ul>
+                <button
+                    class='btn btn-primary'
+                    onClick={() => navigate(-1)}>Voltar</button>
             </div>
         </>
     )
