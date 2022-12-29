@@ -42,7 +42,7 @@ export default function Favorites(props) {
                             }}>{item.imdbID}
                                 <button
                                     class='btn btn-danger btn-sm'
-                                    onClick={() => unfavorite(item.imdbID)}>Remover</button>
+                                    onClick={() => unfavorite(item.imdbID)}>&#10006;</button>
                             </div>
                         </div>
                     )

@@ -59,7 +59,7 @@ export default function ListMovies() {
                                     <button
                                         type='button'
                                         class='btn btn-warning active btn-sm'
-                                        onClick={() => favorite(movie.imdbID)}>Favoritar</button>
+                                        onClick={() => favorite(movie.imdbID)}>&#10084;</button>
                                     <button
                                         type='button'
                                         class='btn btn-primary btn-sm'
