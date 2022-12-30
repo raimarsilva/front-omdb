@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import api from "../services/api";
 import User from "./User";
@@ -24,7 +24,7 @@ export default function Reviews() {
         await api.delete('reviews/'.concat(imdbID), config)
             .then((resp) => {
                 console.log(resp.data);
-                navigate('/reviews');
+                window.location.reload();
             })
     }
 
@@ -46,7 +46,9 @@ export default function Reviews() {
                                     margin: '5px',
                                     padding: '5px'
                                 }}>{item.comment}
-                                    <Link onClick={() => removeReview(item.imdbID)}>Remover</Link>
+                                    <button
+                                        class='btn btn-danger btn-sm'
+                                        onClick={() => removeReview(item.imdbID)}>&#10006;</button>
                                 </div>
                             </div>
                         )

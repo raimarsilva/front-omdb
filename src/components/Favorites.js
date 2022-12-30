@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import api from "../services/api";
 
-export default function Favorites(props) {
+export default function Favorites() {
     const { token } = useContext(AuthContext);
     const endpoint = 'favorites/';
     const config = { headers: { Authorization: `Bearer ${token}` } };

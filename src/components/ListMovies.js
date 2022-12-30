@@ -1,6 +1,4 @@
-import { Alert, Button } from "bootstrap";
 import { useContext, useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import ReviewModal from "../modals/ReviewModal";
 import api from "../services/api";
@@ -9,8 +7,8 @@ import Favorites from "./Favorites";
 export default function ListMovies() {
     const { token } = useContext(AuthContext);
     const [movies, setMovies] = useState([]);
+    const [movieReview, setMovieReview] = useState(null);
     const config = { headers: { Authorization: `Bearer ${token}` } };
-    const navigate = useNavigate();
 
     useEffect(() => async function () {
         const res = await fetch(uri)
@@ -32,16 +30,14 @@ export default function ListMovies() {
             })
     }
 
-    function review(imdbID) {
-        console.log(imdbID)
-        //navigate('/reviews', imdbID)
-        return (
-            <div><h1>texto</h1></div>
-        )
+    function reviewModal() {
+        if (movieReview !== null)
+            return <ReviewModal movieReview={movieReview} setMovieReview={setMovieReview} />
     }
 
     return (
         <div>
+            {reviewModal()}
             <Favorites />
             <h1>Filmes disponíveis</h1>
             <div>
@@ -65,7 +61,7 @@ export default function ListMovies() {
                                         class='btn btn-primary btn-sm'
                                         data-toggle='modal'
                                         data-target='#myModal'
-                                        onClick={() => review(movie.imdbID)}>Escrever análise</button>
+                                        onClick={() => setMovieReview(movie.imdbID)}>Escrever análise</button>
                                 </div>
                             </div>
                         )

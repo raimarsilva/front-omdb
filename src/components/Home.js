@@ -2,13 +2,11 @@ import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import api from "../services/api";
-import Favorites from "./Favorites";
 import ListMovies from "./ListMovies";
-import Reviews from "./Reviews";
 import User from "./User";
 
 export default function Home() {
-    const { token, user, setUser } = useContext(AuthContext)
+    const { token, setUser } = useContext(AuthContext)
 
     const endPoint = 'auth/me';
     const config = { headers: { Authorization: `Bearer ${token}` } }
