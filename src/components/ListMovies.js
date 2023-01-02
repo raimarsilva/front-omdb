@@ -8,6 +8,7 @@ export default function ListMovies() {
     const { token } = useContext(AuthContext);
     const [movies, setMovies] = useState([]);
     const [movieReview, setMovieReview] = useState(null);
+    const [favorite, setFavorite] = useState(null);
     const config = { headers: { Authorization: `Bearer ${token}` } };
 
     useEffect(() => async function () {
@@ -18,12 +19,13 @@ export default function ListMovies() {
 
     const uri = 'https://www.omdbapi.com/?s=eight&y=2022&apikey=6793be4'
 
-    async function favorite(imdbID) {
+    async function doFavorite(imdbID) {
         console.log(imdbID)
         await api.post('favorites', { imdbID }, config)
             .then(resp => {
                 console.log(resp.data.msg);
-                window.location.reload()
+                setFavorite(imdbID);
+                updateFavorites();
             })
             .catch(() => {
                 alert('Filme já favoritado')
@@ -35,10 +37,14 @@ export default function ListMovies() {
             return <ReviewModal movieReview={movieReview} setMovieReview={setMovieReview} />
     }
 
+    function updateFavorites(){
+        if (favorite !== null) return <Favorites />;
+    }
+
     return (
         <div>
             {reviewModal()}
-            <Favorites />
+            {updateFavorites()}
             <h1>Filmes disponíveis</h1>
             <div>
                 <ul>
@@ -55,7 +61,7 @@ export default function ListMovies() {
                                     <button
                                         type='button'
                                         class='btn btn-warning active btn-sm'
-                                        onClick={() => favorite(movie.imdbID)}>&#10084;</button>
+                                        onClick={() => doFavorite(movie.imdbID)}>&#10084;</button>
                                     <button
                                         type='button'
                                         class='btn btn-primary btn-sm'
